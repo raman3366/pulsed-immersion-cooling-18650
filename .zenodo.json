@@ -1,0 +1,29 @@
+{
+  "title": "Pulsed coolant flow in single-phase dielectric immersion cooling of an 18650 module: data and code",
+  "upload_type": "dataset",
+  "description": "Processed results, reference data, OpenFOAM v2606 case template, generation and post-processing scripts, and figure/table sources for a conjugate heat-transfer study of pulsed and intermittent coolant flow in single-phase dielectric immersion cooling of a six-cell 18650 module (submitted to Applied Thermal Engineering, 2026). Code under MIT; data and figures under CC BY 4.0 (see LICENSE).",
+  "creators": [
+    {
+      "name": "Lakshmipathi, Anantha Raman",
+      "affiliation": "Rajalakshmi Institute of Technology, Chennai, India"
+    },
+    {
+      "name": "Deepanraj, B.",
+      "affiliation": "Prince Mohammad Bin Fahd University, Al-Khobar, Saudi Arabia"
+    },
+    {
+      "name": "Thamizharasan, T.",
+      "affiliation": "M. S. Ramaiah University of Applied Sciences, Bengaluru, India"
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "immersion cooling",
+    "pulsating flow",
+    "lithium-ion battery",
+    "conjugate heat transfer",
+    "OpenFOAM"
+  ],
+  "version": "v1.0.1",
+  "access_right": "open"
+}

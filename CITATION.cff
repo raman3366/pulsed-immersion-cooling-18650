@@ -1,16 +1,25 @@
 cff-version: 1.2.0
-title: "Pulsed coolant flow in single-phase dielectric immersion cooling of an 18650 module — data and code"
+message: "If you use this data or code, please cite it as below."
+type: dataset
+title: "Pulsed coolant flow in single-phase dielectric immersion cooling of an 18650 module: data and code"
 authors:
   - family-names: Lakshmipathi
     given-names: Anantha Raman
-    affiliation: Rajalakshmi Institute of Technology, Chennai, India
+    affiliation: "Department of Mechanical Engineering, Rajalakshmi Institute of Technology, Chennai, India"
   - family-names: Deepanraj
     given-names: B.
-    affiliation: Prince Mohammad Bin Fahd University, Al-Khobar, Saudi Arabia
+    affiliation: "Department of Mechanical Engineering, Prince Mohammad Bin Fahd University, Al-Khobar, Saudi Arabia"
   - family-names: Thamizharasan
     given-names: T.
-    affiliation: M. S. Ramaiah University of Applied Sciences, Bengaluru, India
-version: v1
-date-released: 2026-09-05
-license: MIT (code) / CC-BY-4.0 (data)
+    affiliation: "Department of Data Sciences and Analytics, M. S. Ramaiah University of Applied Sciences, Bengaluru, India"
+version: v1.0.1
+date-released: "2026-09-05"
+license: MIT
 repository-code: "https://github.com/raman3366/pulsed-immersion-cooling-18650"
+keywords:
+  - immersion cooling
+  - pulsating flow
+  - lithium-ion battery
+  - conjugate heat transfer
+  - OpenFOAM
+abstract: "Processed results, reference data, OpenFOAM v2606 case template, generation and post-processing scripts, and figure/table sources for a conjugate heat-transfer study of pulsed and intermittent coolant flow in single-phase dielectric immersion cooling of a six-cell 18650 module (submitted to Applied Thermal Engineering, 2026). Code: MIT; data and figures: CC BY 4.0 (see LICENSE)."
