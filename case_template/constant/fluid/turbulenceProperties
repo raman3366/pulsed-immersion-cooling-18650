@@ -1,0 +1,9 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      turbulenceProperties;
+}
+// Laminar (D-04); justify by Re in the paper, k-omega-SST low-Re fallback.
+simulationType  laminar;

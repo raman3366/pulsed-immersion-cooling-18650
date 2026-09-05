@@ -1,0 +1,76 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2606                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    arch        "LSB;label=32;scalar=64";
+    class       volScalarField;
+    location    "0/fluid";
+    object      p_rgh;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [ 1 -1 -2 0 0 0 0 ];
+
+internalField   uniform 101325;
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedFluxPressure;
+        gradient        uniform 0;
+        value           uniform 101325;
+    }
+    outlet
+    {
+        type            fixedValue;
+        gradient        uniform 0;
+        value           uniform 101325;
+    }
+    walls
+    {
+        type            fixedFluxPressure;
+        gradient        uniform 0;
+        value           uniform 101325;
+    }
+    fluid_to_cell4
+    {
+        type            fixedFluxPressure;
+        value           uniform 101325;
+    }
+    fluid_to_cell2
+    {
+        type            fixedFluxPressure;
+        value           uniform 101325;
+    }
+    fluid_to_cell5
+    {
+        type            fixedFluxPressure;
+        value           uniform 101325;
+    }
+    fluid_to_cell0
+    {
+        type            fixedFluxPressure;
+        value           uniform 101325;
+    }
+    fluid_to_cell3
+    {
+        type            fixedFluxPressure;
+        value           uniform 101325;
+    }
+    fluid_to_cell1
+    {
+        type            fixedFluxPressure;
+        value           uniform 101325;
+    }
+}
+
+
+// ************************************************************************* //

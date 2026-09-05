@@ -1,0 +1,78 @@
+#!/bin/sh
+# Pre-processing pipeline (NO solver): physics render -> mesh -> region split
+# (with fields) -> per-region changeDictionary -> checkMesh.
+# WARNING: wipes time dirs and processor dirs — never use to RESUME a run
+# (use run_ec2_restart.sh for that).
+# Env: GRID=coarse|medium|fine, COOLANT_K=<W/m.K override>
+cd "${0%/*}" || exit
+. "${WM_PROJECT_DIR:?}"/bin/tools/RunFunctions
+set -e
+
+# locate the repo root by marker file — template (2 deep) and matrix cases
+# (3 deep) both work; counted-".." paths bit us three times
+REPO="$PWD"
+while [ ! -f "$REPO/data/reference/properties.yaml" ] && [ "$REPO" != "/" ]; do
+    REPO="$(dirname "$REPO")"
+done
+[ -f "$REPO/data/reference/properties.yaml" ] || { echo "repo root not found"; exit 1; }
+# matrix cases carry their parameters in case.env (written by generate_cases.py)
+[ -f case.env ] && . ./case.env
+# pulsed cases: maxDeltaT = period/40 (E4 gate) set by generate_cases.py
+[ -n "${MAXDT:-}" ] && sed -i.bak "s/^maxDeltaT .*/maxDeltaT       $MAXDT;   \/\/ E4: period\/40 (case.env MAXDT)/" system/controlDict && rm -f system/controlDict.bak
+PY="$REPO/.venv/bin/python"
+[ -x "$PY" ] || PY=python3
+
+rm -f log.*
+rm -rf postProcessing constant/polyMesh constant/*/polyMesh \
+       constant/extendedFeatureEdgeMesh
+# stale processor dirs + 'startFrom latestTime' = resume of OLD fields on the
+# NEW mesh (size-mismatch crash). Fresh start wipes them; only
+# run_ec2_restart.sh may resume.
+rm -rf processor*
+# trap: 'rm -rf ./[0-9]*' would also match 0.orig — delete explicitly
+find . -maxdepth 1 -type d -name '[0-9]*' ! -name '0.orig' -exec rm -rf {} +
+
+# geometry: 2x3 module centred in x-y, cells STANDING ON THE FLOOR (Stage-3
+# extraction). The STL protrudes 1 mm below z=0 so snappy clips it at the
+# domain floor: in-domain cell = exactly 0..65 mm, bottom cap on the boundary.
+# --out into THIS case: concurrent case builds must not race on shared files
+runApplication -s geometry "$PY" "$REPO/geometry/make_geometry.py" \
+    --z0 -0.001 --height 0.066 --out constant/triSurface
+
+# physics AFTER geometry: makePhysics parses the manifest make_geometry writes
+runApplication -s physics "$PY" makePhysics.py
+# §4.6: production time scheme is backward (2nd order). The Euler sweep of
+# 2026-09-01 showed temporal numerical diffusion (~u^2 dt/2, 60x molecular
+# in the plumes at dt 0.05) shifting T_max by 0.5 K. DDT=Euler reproduces it.
+DDT="${DDT:-backward}"
+sed -i.bak "s/default *Euler;/default $DDT;/; s/default *backward;/default $DDT;/" system/fvSchemes system/*/fvSchemes && rm -f system/fvSchemes.bak system/*/fvSchemes.bak   # portable BSD/GNU
+grep -h "default *$DDT;" system/fluid/fvSchemes system/cell0/fvSchemes | head -1 | xargs echo ">>> ddtSchemes:"
+# NOUTER=<n>: PIMPLE outer correctors (region-coupling convergence per step;
+# diagnostic 2026-09-01: dt-dependence persisted with backward -> coupling lag)
+[ -n "${NOUTER:-}" ] && sed -i.bak "s/nOuterCorrectors *[0-9]*;/nOuterCorrectors    $NOUTER;/" system/fvSolution && rm -f system/fvSolution.bak && grep -o "nOuterCorrectors *[0-9]*" system/fvSolution | xargs echo ">>>"
+
+
+GRID="${GRID:-coarse}"
+runApplication -s mesh "$PY" makeMesh.py "$GRID"
+
+runApplication surfaceFeatureExtract
+runApplication blockMesh
+
+# fields must exist before the split so per-region 0/<region>/ gets written
+cp -r 0.orig 0
+
+runApplication snappyHexMesh -overwrite
+runApplication splitMeshRegions -cellZones -overwrite
+
+for region in $(foamListRegions)
+do
+    runApplication -s "$region" changeDictionary -region "$region"
+done
+
+# solids keep only T, p, rho
+for region in $(foamListRegions solid)
+do
+    rm -f 0/"$region"/U 0/"$region"/p_rgh
+done
+
+runApplication checkMesh -allRegions -constant

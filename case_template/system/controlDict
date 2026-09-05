@@ -1,0 +1,37 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     chtMultiRegionFoam;
+
+startFrom       latestTime;         // restart-safe (spot instances, §4.6)
+startTime       0;
+stopAt          endTime;
+endTime         30;                 // TEMPLATE SMOKE; generate_cases.py sets 900 (t_discharge) per matrix case
+deltaT          1e-3;
+
+writeControl    adjustableRunTime;  // §4.6: clean restarts on spot
+writeInterval   10;
+purgeWrite      2;                  // disk: 15-case sweep filled 30GB with full checkpoint histories
+writeFormat     ascii;
+writePrecision  8;
+timeFormat      general;
+timePrecision   8;
+runTimeModifiable yes;
+
+adjustTimeStep  yes;
+maxCo           1.0;                // tight-duct gap jets: 1.5 gave 2.7 peaks (waived once); margin restored
+maxDi           100;                // implicit solid solve; 10 throttled dt 4.5x on the medium grid (§4.8 time-step study validates)
+maxDeltaT       0.25;
+
+functions
+{
+    #include "monitors"
+}
+
+// ************************************************************************* //

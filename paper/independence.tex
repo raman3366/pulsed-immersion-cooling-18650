@@ -1,0 +1,11 @@
+\begin{table}[h]\centering\caption{Discretisation studies. Top: grid convergence on the validation box (T2 at end of 3C discharge). Bottom: temporal-resolution study on the production duct (steady $\bar Q=90$~mL/min, $T_\mathrm{max}$ at 900~s, $^\circ$C).}\label{tab:indep}
+\begin{tabular}{lrrrrrr}\toprule
+\multicolumn{7}{l}{\emph{Grid (box, GCI)}}\\
+cells & 217,776 & 468,120 & 1,048,170 & $p$ & $\phi_\mathrm{ext}$ & GCI$_\mathrm{fine}$ \\
+T2 [$^\circ$C] & 31.75 & 31.24 & 30.87 & 1.40 & 30.05 & 3.3\% \\ \midrule
+\multicolumn{7}{l}{\emph{Time step (duct), median $\Delta t$ [s]}}\\
+recipe & 0.048/0.039 & 0.025 & 0.0125 & & & \\
+Euler, 2 outer corr. & 31.28 & 31.46 & 31.82 & & & \\
+backward, 2 outer corr. & 31.45 & 31.68 & 31.96 & & & \\
+backward, 4 / 6 outer corr. & 31.51 / 31.54 & -- / 31.69 & -- & & & \\ \bottomrule
+\end{tabular}\end{table}

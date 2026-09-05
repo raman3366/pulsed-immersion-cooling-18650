@@ -1,0 +1,37 @@
+# Battery heat-generation model — Liu et al., ATE 233 (2023) 121184, §3.1.
+# Extracted verbatim from the green-OA accepted manuscript (p.8, Eq. 5)
+# on 2026-08-28. Single source of truth: makePhysics.py renders the
+# OpenFOAM source terms from this file.
+#
+#   qdot(t) = a0 + a1 t + a2 t^2 + a3 t^3 + a4 t^4 + a5 t^5   [W per cell]
+#
+# Independent-variable verification (ours): with t in SECONDS of 3C
+# discharge the polynomial reproduces Fig. 3b (2.1-2.2 W mid-discharge,
+# 2.55 W near t=1000 s); interpreting t as DoD% does not. Liu's COMSOL
+# used this "5th polynomial function" directly (§3.3).
+#
+# The polynomial is valid on [0, t_discharge] only — it diverges beyond
+# (extrapolation past the fit domain). endTime must never exceed it.
+
+liu3c:
+  description: 3C constant-current discharge (39.6 A module, 13.2 A/cell)
+  source: liu2023 AM p.8, Eq. 5 (R^2 = 0.969, Fig. 3b)
+  units: W per cell, t in seconds from start of discharge
+  coefficients:            # a0..a5
+    - 1.73
+    - 4.42e-3
+    - -1.55e-5
+    - 2.85e-8
+    - -3.01e-11
+    - 1.35e-14
+  t_discharge: 900.0       # s — CONFIRMED from Figs 4a, 7b, 9 (all end
+                           # ~900 s; 3C to 2.75 V cut-off uses ~75% of
+                           # nominal capacity). Within [0,900] the fit
+                           # stays in 1.73-2.2 W with NO divergence — the
+                           # earlier tail caution applied only past the
+                           # fit domain.
+
+# 1C and 2C polynomials are NOT printed in the text — they exist only as
+# Fig. 3b curves (R^2 = 0.978 / 0.996). Digitise in a later stage if the
+# validation gate needs more than the 3C anchor (user decision 2026-08-28:
+# 3C now, 1C/2C later).

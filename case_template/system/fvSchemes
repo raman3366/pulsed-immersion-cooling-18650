@@ -1,0 +1,15 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSchemes;
+}
+// Minimal placeholder for mesh utilities; per-region schemes come with the
+// physics build.
+ddtSchemes      { default backward; }
+gradSchemes     { default "Gauss linear"; }
+divSchemes      { default none; }
+laplacianSchemes { default "Gauss linear corrected"; }
+interpolationSchemes { default linear; }
+snGradSchemes   { default corrected; }

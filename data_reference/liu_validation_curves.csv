@@ -1,0 +1,54 @@
+# Liu et al. 2023 (ATE 233:121184) Fig. 9 — immersion cooling EXPERIMENT,
+# T2 (mid-height surface of cell-2) vs time, 3C discharge.
+# Digitised from the green-OA accepted manuscript by
+# scripts/digitise_liu_fig9.py (method, audit and limitations there).
+# provenance: circle_fit = primary estimator (visually dead-centre);
+#   hole_centroid = fallback where markers merge with the sim line
+#   (cross-method bias at 35 common slots: mean +0.008 C, max 0.179 C);
+#   initial_condition = stated 25.0 C start (Liu §3.3), not digitised.
+# t < ~198 s not digitisable (overprinted by air-cooling markers).
+time_s,T2_C,provenance
+0.0,25.0,initial_condition
+227.4,28.769,circle_fit
+242.3,29.01,circle_fit
+257.3,29.118,circle_fit
+272.4,29.314,circle_fit
+287.2,29.506,circle_fit
+302.7,29.708,circle_fit
+317.4,29.901,circle_fit
+332.3,30.002,circle_fit
+346.9,30.209,circle_fit
+362.3,30.303,circle_fit
+377.4,30.499,circle_fit
+392.6,30.696,circle_fit
+407.6,30.896,circle_fit
+423.2,31.107,circle_fit
+438.1,31.208,circle_fit
+452.5,31.291,circle_fit
+467.7,31.495,circle_fit
+482.5,31.791,circle_fit
+497.5,31.901,circle_fit
+512.6,32.101,circle_fit
+527.9,32.207,circle_fit
+542.8,32.401,circle_fit
+557.2,32.695,circle_fit
+571.9,32.881,circle_fit
+587.4,32.997,circle_fit
+601.3,33.104,circle_fit
+617.0,33.292,circle_fit
+631.4,33.394,circle_fit
+644.2,33.623,circle_fit
+660.9,33.712,circle_fit
+677.0,33.94,circle_fit
+691.1,34.173,circle_fit
+705.7,34.286,circle_fit
+718.0,34.393,circle_fit
+728.5,34.52,circle_fit
+754.6,34.792,hole_centroid
+769.6,34.948,hole_centroid
+784.4,35.104,hole_centroid
+821.2,35.65,circle_fit
+845.3,36.07,hole_centroid
+859.3,36.205,hole_centroid
+874.9,36.267,hole_centroid
+889.7,36.392,hole_centroid

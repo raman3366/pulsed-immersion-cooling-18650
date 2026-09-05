@@ -1,0 +1,307 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2606                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    arch        "LSB;label=32;scalar=64";
+    class       dictionary;
+    location    "10/uniform/functionObjects";
+    object      functionObjectProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+cdf7e925f5746741c316f5fbcf39ad0dfca90775
+{
+    wallLoss_fluid
+    {
+        scalar
+        {
+            min(walls)      0;
+            max(walls)      0;
+            int(walls)      0;
+        }
+    }
+    sum_inlet
+    {
+        scalar
+        {
+            sum(inlet,phi)  -0.001879919041478969;
+        }
+    }
+    areaAverage_inlet
+    {
+        scalar
+        {
+            areaAverage(inlet,p) 100820.4495243543;
+            areaAverage(inlet,T) 298.1499999999927;
+        }
+    }
+    TphiSum_inlet
+    {
+        scalar
+        {
+            weightedSum(inlet,T) -0.5604978622169653;
+        }
+    }
+    sum_outlet
+    {
+        scalar
+        {
+            sum(outlet,phi) 0.001880942449428354;
+        }
+    }
+    areaAverage_outlet
+    {
+        scalar
+        {
+            areaAverage(outlet,p) 100819.9802138272;
+            areaAverage(outlet,T) 298.1500023444348;
+        }
+    }
+    TphiSum_outlet
+    {
+        scalar
+        {
+            weightedSum(outlet,T) 0.5608029955902353;
+        }
+    }
+    Tmax_cell0
+    {
+        scalar
+        {
+            max(cell0,T)    298.5089978122651;
+        }
+    }
+    Tmin_cell0
+    {
+        scalar
+        {
+            min(cell0,T)    298.453977870713;
+        }
+    }
+    TvolAverage_cell0
+    {
+        scalar
+        {
+            volAverage(cell0,T) 298.493522074698;
+        }
+    }
+    Tmax_cell1
+    {
+        scalar
+        {
+            max(cell1,T)    298.5089983755131;
+        }
+    }
+    Tmin_cell1
+    {
+        scalar
+        {
+            min(cell1,T)    298.4542283115849;
+        }
+    }
+    TvolAverage_cell1
+    {
+        scalar
+        {
+            volAverage(cell1,T) 298.4937441460968;
+        }
+    }
+    Tmax_cell2
+    {
+        scalar
+        {
+            max(cell2,T)    298.5089976073979;
+        }
+    }
+    Tmin_cell2
+    {
+        scalar
+        {
+            min(cell2,T)    298.4536459151069;
+        }
+    }
+    TvolAverage_cell2
+    {
+        scalar
+        {
+            volAverage(cell2,T) 298.493613821326;
+        }
+    }
+    Tmax_cell3
+    {
+        scalar
+        {
+            max(cell3,T)    298.5089979018858;
+        }
+    }
+    Tmin_cell3
+    {
+        scalar
+        {
+            min(cell3,T)    298.4541329658235;
+        }
+    }
+    TvolAverage_cell3
+    {
+        scalar
+        {
+            volAverage(cell3,T) 298.493526619334;
+        }
+    }
+    Tmax_cell4
+    {
+        scalar
+        {
+            max(cell4,T)    298.5089984473277;
+        }
+    }
+    Tmin_cell4
+    {
+        scalar
+        {
+            min(cell4,T)    298.4539525327992;
+        }
+    }
+    TvolAverage_cell4
+    {
+        scalar
+        {
+            volAverage(cell4,T) 298.4937412589844;
+        }
+    }
+    Tmax_cell5
+    {
+        scalar
+        {
+            max(cell5,T)    298.5089977736552;
+        }
+    }
+    Tmin_cell5
+    {
+        scalar
+        {
+            min(cell5,T)    298.4537874784762;
+        }
+    }
+    TvolAverage_cell5
+    {
+        scalar
+        {
+            volAverage(cell5,T) 298.4936128536013;
+        }
+    }
+    TfluidMinMax
+    {
+        scalar
+        {
+            min(T)          298.1487934983208;
+            max(T)          298.5000358801865;
+            min(mag(U))     0;
+            max(mag(U))     0.003088092099099997;
+        }
+        label
+        {
+            min(T)_cell     109303;
+            min(T)_processor 0;
+            max(T)_cell     90217;
+            max(T)_processor 0;
+            min(mag(U))_cell 0;
+            min(mag(U))_processor 0;
+            max(mag(U))_cell 111883;
+            max(mag(U))_processor 0;
+        }
+        vector
+        {
+            min(T)_position ( -0.012356146 -0.015619431 0.067688131 );
+            max(T)_position ( 0.01949972 -0.009499727899999999 0.064999998 );
+            min(mag(U))_position ( -0.088999999 -0.022 7.3741271e-13 );
+            max(mag(U))_position ( 0.012352258 0.013582703 0.06763954899999999 );
+        }
+    }
+    T2probe
+    {
+        scalar
+        {
+            average(T)      298.4738668511294;
+            min(T)          298.4716215520425;
+            max(T)          298.4750929833482;
+        }
+        label
+        {
+            size(T)         4;
+        }
+    }
+    rhoh_fluid
+    {
+        scalar
+        {
+            weightedVolIntegrate(fluid,h) 4.45690668672694;
+        }
+    }
+    rhoh_cell0
+    {
+        scalar
+        {
+            volIntegrate(cell0,h) 0.006492242506067813;
+        }
+    }
+    rhoh_cell1
+    {
+        scalar
+        {
+            volIntegrate(cell1,h) 0.00649643345152983;
+        }
+    }
+    rhoh_cell2
+    {
+        scalar
+        {
+            volIntegrate(cell2,h) 0.006493964397287693;
+        }
+    }
+    rhoh_cell3
+    {
+        scalar
+        {
+            volIntegrate(cell3,h) 0.006492325978599694;
+        }
+    }
+    rhoh_cell4
+    {
+        scalar
+        {
+            volIntegrate(cell4,h) 0.006496395550144174;
+        }
+    }
+    rhoh_cell5
+    {
+        scalar
+        {
+            volIntegrate(cell5,h) 0.006493965763250738;
+        }
+    }
+    TvolAverage_fluid
+    {
+        scalar
+        {
+            volAverage(fluid,T) 298.155139569614;
+        }
+    }
+    wallLossInt_fluid
+    {
+        scalar
+        {
+            areaIntegrate(walls,wallHeatFlux) 0;
+        }
+    }
+}
+
+
+// ************************************************************************* //

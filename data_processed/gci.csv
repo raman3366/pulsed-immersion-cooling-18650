@@ -1,0 +1,2 @@
+phi,N_coarse,N_medium,N_fine,r21,r32,phi_coarse,phi_medium,phi_fine,apparent_order_p,phi_extrapolated,GCI_fine_pct,gate_3pct
+T2_end_C,217776,468120,1048170,1.3083,1.2906,31.7494825,31.23849750000005,30.865372499999978,1.401,30.049,3.305,FAIL

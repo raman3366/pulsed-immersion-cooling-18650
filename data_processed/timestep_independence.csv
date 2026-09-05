@@ -1,0 +1,2 @@
+grid,model,dt_cap_A,dt_cap_B,T2_end_A_C,T2_end_B_C,max_abs_dT2_C,mean_abs_dT2_C,end_change_pct,verdict
+coarse,U27_k0068,maxDi 10 (dt ~36.5 ms),maxDi 100 (dt ~54 ms Co-limited),31.737,31.749,0.0134,0.0041,0.0378,PASS

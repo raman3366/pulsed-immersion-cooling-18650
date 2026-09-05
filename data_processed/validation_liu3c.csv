@@ -1,0 +1,7 @@
+case,MAE_C,MAE_pct,max_err_C,T2_end_sim_C,T2_end_exp_C,gate_8pct
+"k=0.068 (physical, D-07 baseline)",3.508,10.45,7.333,29.06,36.39,FAIL
+"k=0.6 (Liu effective, sensitivity)",4.644,14.04,7.773,28.62,36.39,FAIL
+k=0.068 + adiabatic lid (free surface),3.205,9.53,6.847,29.54,36.39,FAIL
+k=0.068 + beta 0.8e-3 (half buoyancy),2.97,8.81,6.599,29.79,36.39,FAIL
+k=0.068 + acrylic h=38 all faces,2.217,6.55,5.154,31.24,36.39,PASS
+k=0.068 + U=27 (acrylic+bath film),1.95,5.74,4.7,31.69,36.39,PASS

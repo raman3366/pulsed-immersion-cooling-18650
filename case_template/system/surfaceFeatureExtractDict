@@ -1,0 +1,36 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2606                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      surfaceFeatureExtractDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// The cylinder cap rims are the only sharp features; 150 deg catches them
+// without marking the tessellation facets.
+
+_extract
+{
+    extractionMethod    extractFromSurface;
+    includedAngle       150;
+    writeFeatureEdgeMesh yes;
+}
+
+"cell0.stl" { ${_extract} }
+"cell1.stl" { ${_extract} }
+"cell2.stl" { ${_extract} }
+"cell3.stl" { ${_extract} }
+"cell4.stl" { ${_extract} }
+"cell5.stl" { ${_extract} }
+
+#remove _extract
+
+// ************************************************************************* //

@@ -1,0 +1,15 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      T;
+}
+// Generic pre-split field; changeDictionary sets the real BCs per region.
+dimensions      [0 0 0 1 0 0 0];
+// Liu §3.3: cells AND liquid start at 25 C; the 22 C bath is the wall BC only
+internalField   uniform 298.15;
+boundaryField
+{
+    ".*" { type zeroGradient; }
+}

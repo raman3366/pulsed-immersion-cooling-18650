@@ -1,0 +1,7 @@
+#!/bin/sh
+# Local serial run: Allrun.pre + chtMultiRegionFoam (Mac smoke tests).
+cd "${0%/*}" || exit
+. "${WM_PROJECT_DIR:?}"/bin/tools/RunFunctions
+set -e
+./Allrun.pre
+runApplication $(getApplication)

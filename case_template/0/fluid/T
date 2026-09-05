@@ -1,0 +1,85 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2606                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    arch        "LSB;label=32;scalar=64";
+    class       volScalarField;
+    location    "0/fluid";
+    object      T;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [ 0 0 0 1 0 0 0 ];
+
+internalField   uniform 298.15;
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;
+        value           uniform 298.15;
+    }
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      uniform 298.15;
+        value           uniform 298.15;
+    }
+    walls
+    {
+        type            zeroGradient;
+    }
+    fluid_to_cell4
+    {
+        type            compressible::turbulentTemperatureCoupledBaffleMixed;
+        value           uniform 298.15;
+        Tnbr            T;
+        kappaMethod     fluidThermo;
+    }
+    fluid_to_cell2
+    {
+        type            compressible::turbulentTemperatureCoupledBaffleMixed;
+        value           uniform 298.15;
+        Tnbr            T;
+        kappaMethod     fluidThermo;
+    }
+    fluid_to_cell5
+    {
+        type            compressible::turbulentTemperatureCoupledBaffleMixed;
+        value           uniform 298.15;
+        Tnbr            T;
+        kappaMethod     fluidThermo;
+    }
+    fluid_to_cell0
+    {
+        type            compressible::turbulentTemperatureCoupledBaffleMixed;
+        value           uniform 298.15;
+        Tnbr            T;
+        kappaMethod     fluidThermo;
+    }
+    fluid_to_cell3
+    {
+        type            compressible::turbulentTemperatureCoupledBaffleMixed;
+        value           uniform 298.15;
+        Tnbr            T;
+        kappaMethod     fluidThermo;
+    }
+    fluid_to_cell1
+    {
+        type            compressible::turbulentTemperatureCoupledBaffleMixed;
+        value           uniform 298.15;
+        Tnbr            T;
+        kappaMethod     fluidThermo;
+    }
+}
+
+
+// ************************************************************************* //

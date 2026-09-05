@@ -1,0 +1,72 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Sibling-project traps honoured here:
+//  - closed liquid domain: p_rgh is singular up to a reference -> pRefPoint,
+//    and GAMG tolerance 1e-7 (1e-8 grinds)
+//  - NO 'fields p_rgh' relaxation entry (chtMultiRegionFoam has no
+//    storePrevIter on p_rgh -> mid-solve abort)
+
+solvers
+{
+    "(rho|rhoFinal)"
+    {
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-7;
+        relTol          0;
+    }
+
+    p_rgh
+    {
+        solver          GAMG;
+        smoother        GaussSeidel;
+        tolerance       1e-7;
+        relTol          0.01;
+    }
+
+    p_rghFinal
+    {
+        $p_rgh;
+        relTol          0;
+    }
+
+    "(U|h)"
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-8;
+        relTol          0.1;
+    }
+
+    "(U|h)Final"
+    {
+        $U;
+        relTol          0;
+    }
+}
+
+PIMPLE
+{
+    momentumPredictor           yes;
+    nCorrectors                 2;
+    nNonOrthogonalCorrectors    1;
+    // no pRefPoint: the outlet fixedValue sets the pressure level (duct)
+}
+
+relaxationFactors
+{
+    equations
+    {
+        "(U|h)"         0.7;
+        "(U|h)Final"    1;
+    }
+}
+
+// ************************************************************************* //
