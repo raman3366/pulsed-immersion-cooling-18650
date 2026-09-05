@@ -2,6 +2,8 @@
 
 Companion release for: Lakshmipathi, Deepanraj, Thamizharasan, *Pulsed coolant flow in single-phase dielectric immersion cooling of an 18650 module: a regime map for temperature uniformity at millijoule pumping cost*, submitted to Applied Thermal Engineering (2026).
 
+**Archived version:** doi:10.5281/zenodo.22316194
+
 ## Contents
 - `data_processed/` — every number in the paper: `pareto.csv` (per-case metrics incl. the D-17 pump-energy decomposition), `sweep_summary.csv`, `summary.csv` (conservation gates and recorded waivers per run), `timeseries.csv` (monitor time series, all runs), `gci.csv`, `timestep_independence.csv`, `validation_liu3c.csv`.
 - `data_reference/` — cell/coolant properties, heat-generation polynomial, digitised validation curve (with provenance).

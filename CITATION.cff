@@ -15,6 +15,7 @@ authors:
 version: v1.0.1
 date-released: "2026-09-05"
 license: MIT
+doi: 10.5281/zenodo.22316194
 repository-code: "https://github.com/raman3366/pulsed-immersion-cooling-18650"
 keywords:
   - immersion cooling
